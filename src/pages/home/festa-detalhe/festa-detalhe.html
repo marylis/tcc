@@ -1,0 +1,157 @@
+<ion-header class="bgapp bar-header">
+
+    <ion-row>
+        <ion-col col-2>
+            <button ion-button class="transp" (click)="back()">
+                <ion-icon name="arrow-round-back" class="cwhite tam"></ion-icon>
+            </button>
+        </ion-col>
+
+        <ion-col col-10>
+            <div class="center">
+                <span class="cwhite tam">{{nome}}</span>
+            </div>
+        </ion-col>
+    </ion-row>
+
+    <!--ion-navbar class="transp">
+        <ion-title>{{nome}}</ion-title>
+    </ion-navbar-->
+
+    <ion-row>
+        <ion-col>
+            <div class="pdtop text-center">
+                <span class="cwhite">#</span><span class="verde">Eu</span><span class="rosa">Na</span><span
+                    class="verde">Balada</span>
+            </div>
+        </ion-col>
+    </ion-row>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list *ngFor="let f of festa">
+        <img [src]="f.img_principal"/>
+        <ion-row>
+            <ion-col>
+                <span class="verdeesc"><strong>Data: </strong></span>{{f.data}}
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <span class="verdeesc"><strong>Horário de início: </strong></span>{{f.horario_inicio}} hrs
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <span class="verdeesc"><strong>Horário de término: </strong></span>{{f.horario_termino}} hrs
+            </ion-col>
+        </ion-row>
+
+        <ion-list>
+            <ion-list-header class="verdeesc"><strong>Gêneros musicais: </strong></ion-list-header>
+            <ion-item *ngFor="let g of f.genero_musical">
+                {{g.nome}}
+            </ion-item>
+
+            <ion-list-header class="verdeesc"><strong>Atrações: </strong></ion-list-header>
+            <ion-item *ngFor="let a of f.atracoes">
+                {{a.nome}}
+            </ion-item>
+
+            <ion-list-header class="verdeesc"><strong>Local do acontecimento: </strong></ion-list-header>
+            <ion-row *ngFor="let l of f.local">
+                <span class="verde"><strong>{{l.nome}}</strong></span>
+                <p>{{l.logradouro}}</p>
+            </ion-row>
+
+            <ion-row *ngIf="f.faixa_etaria != ''">
+                <span><strong>Idade mínima de {{f.faixa_etaria}} anos exigida para participar desta festa</strong></span>
+            </ion-row>
+
+
+            <ion-item-group *ngFor="let t of f.tipo_ingressos">
+                <ion-list-header class="verde"><strong>{{t.nome}}</strong></ion-list-header>
+
+                <ion-row *ngFor="let tvl of t.tipo_ingresso_gen_sexual">
+                    <ion-col col-6 *ngIf="tvl.id_genero_sexual == 1">
+                        <span class="verdeesc"><strong>Masculino</strong></span>
+                    </ion-col>
+                    <ion-col col-6 *ngIf="tvl.id_genero_sexual == 1">
+                        {{tvl.valor_ingresso | currencyformat:'BRL':true:'1.2-2'}}
+                    </ion-col>
+
+                    <ion-col col-6 *ngIf="tvl.id_genero_sexual == 2">
+                        <span class="verdeesc"><strong>Feminino</strong></span>
+                    </ion-col>
+                    <ion-col col-6 *ngIf="tvl.id_genero_sexual == 2">
+                        {{tvl.valor_ingresso | currencyformat:'BRL':true:'1.2-2'}}
+                    </ion-col>
+
+                    <ion-col col-6 *ngIf="tvl.id_genero_sexual == 3">
+                        <span class="verdeesc"><strong>Geral</strong></span>
+                    </ion-col>
+                    <ion-col col-6 *ngIf="tvl.id_genero_sexual == 3">
+                        {{tvl.valor_ingresso | currencyformat:'BRL':true:'1.2-2'}}
+                    </ion-col>
+                </ion-row>
+
+
+                <span class="verde"
+                      *ngIf="t.tipo_ingresso_bebida != ''"><strong>Open bar de: </strong></span>
+                <ion-item *ngFor="let tb of t.tipo_ingresso_bebida">
+                    {{tb.nome}}
+                </ion-item>
+
+                <span class="verde"
+                      *ngIf="t.tipo_ingresso_comida != ''"><strong>Open food de: </strong></span>
+                <ion-item *ngFor="let tc of t.tipo_ingresso_comida">
+                    {{tc.nome}}
+                </ion-item>
+            </ion-item-group>
+
+            <ion-list-header class="verdeesc"><strong>Pontos de venda: </strong></ion-list-header>
+            <ion-item-group *ngFor="let p of f.pontos_venda">
+                <span class="verde"><strong>{{p.nome}}</strong></span>
+                <p>{{p.logradouro}}</p>
+            </ion-item-group>
+
+            <ion-list-header class="verdeesc" *ngIf="f.entrega_abada != ''"><strong>Pontos de entrega dos
+                abadás: </strong></ion-list-header>
+            <ion-item-group *ngFor="let e of f.entrega_abada">
+                <span class="verde"><strong>{{e.nome}}</strong></span>
+                <p>{{e.logradouro}}</p>
+
+                <span class="verdeesc"><strong>Entregas: </strong></span>
+                <p>
+                    De: {{e.inicio_entrega}}, até: {{e.fim_entrega}}, das {{e.horario_inicio}}hrs às
+                    {{e.horario_fim}}hrs
+                </p>
+
+                <span class="verdeesc"><strong>Requisito para a retirada: </strong></span>
+                <p>
+                    {{e.requisito}}
+                </p>
+
+                <span class="verdeesc" *ngIf="e.obs != ''"><strong>Observações: </strong></span>
+                <p *ngIf="e.obs != ''">
+                    {{e.obs}}
+                </p>
+            </ion-item-group>
+
+            <ion-list-header class="verdeesc" *ngIf="f.img_sec != ''"><strong>Mais sobre a festa: </strong>
+            </ion-list-header>
+            <ion-item-group *ngFor="let i of f.img_sec">
+                <img [src]="i.img"/>
+            </ion-item-group>
+
+            <ion-item-group class="pdtop" *ngFor="let e of f.empresa">
+                <span class="verde"><strong>{{e.nome}}</strong></span>
+                <p>{{e.telefone}}</p>
+            </ion-item-group>
+
+        </ion-list>
+    </ion-list>
+</ion-content>
+

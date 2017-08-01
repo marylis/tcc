@@ -1,0 +1,35 @@
+<ion-content class="background">
+    <h3 class="title center"><span class="cwhite">#</span><span class="verde">Eu</span><span class="rosa">Na</span><span
+            class="verde">Balada</span></h3>
+    <h6 class="subtitle center cwhite">O melhor app de baladas,<br> todinho pra você!</h6>
+
+    <form (ngSubmit)="prelogin()">
+        <ion-grid class="top">
+            <ion-col col-10 offset-1>
+                <div>
+                    <ion-item class="bg-hidden">
+                        <ion-label color="verde" floating>Usuário</ion-label>
+                        <ion-input class="cwhite" type="email" [(ngModel)]="login.email" name="email"></ion-input>
+                    </ion-item>
+                    <ion-item class="bg-hidden">
+                        <ion-label color="verde" floating>Senha</ion-label>
+                        <ion-input class="cwhite" type="password" [(ngModel)]="login.senha" name="senha"></ion-input>
+                    </ion-item>
+                </div>
+            </ion-col>
+        </ion-grid>
+
+        <ion-grid class="bottomc">
+            <ion-col col-10 offset-1>
+                <button ion-button class="cwhite" color="rosa" block round type="submit">Log in</button>
+            </ion-col>
+        </ion-grid>
+    </form>
+
+    <ion-grid class="bottomcadastre">
+        <ion-col col-10 offset-1>
+            <button ion-button class="cwhite" color="verde" block round (click)="cadastrar()">Cadastre-se</button>
+        </ion-col>
+    </ion-grid>
+
+</ion-content>

@@ -1,0 +1,24 @@
+<ion-menu id="menu1" side="left" [content]="menuContent">
+    <ion-header>
+        <ion-toolbar color="menu">
+            <ion-title class="padding-bottom">Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+        <ion-list>
+            <button item-right icon-left ion-item *ngFor="let page of pages"  class="contentcolor" (click)="openPage(page)">
+                <ion-icon name="{{page.icon}}" class="small" id="{{page.c}}"></ion-icon>
+                {{ page.title }}
+            </button>
+            <button item-right icon-left ion-item (click)="logout()" class="contentcolor">
+                <ion-icon name="exit" class="small"></ion-icon> Sair
+            </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+
+<!--ion-nav #menuContent [root]="rootPage"></ion-nav-->
+
+<ion-nav [root]="rootPage" #menuContent ></ion-nav>

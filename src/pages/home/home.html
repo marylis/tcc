@@ -1,0 +1,107 @@
+<!--ion-menu id="menu2" side="right" [content]="content">
+    <ion-header>
+        <ion-toolbar color="menu">
+            <ion-title class="padding-bottom">Encontre sua festa</ion-title>
+            <p item-right  class="small right rosa padtop">Utilize os filtros de sua preferência</p>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+        <ion-list>
+            <ion-item>
+                <ion-label color="verde" stacked>Por gênero musical</ion-label>
+                <ion-input class="verdeesc" type="text" [(ngModel)]="filtro.gen_musical"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="verde" stacked>Por cidade</ion-label>
+                <ion-input class="verdeesc" type="text" [(ngModel)]="filtro.cidade"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="verde" stacked>Por nome da festa</ion-label>
+                <ion-input class="verdeesc" type="text" [(ngModel)]="filtro.nome_festa"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="verde" stacked>Por atração</ion-label>
+                <ion-input class="verdeesc" type="text" [(ngModel)]="filtro.atracao" placeholder="Cantor, banda, DJ..."></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label color="verde" stacked>Por data</ion-label>
+                <ion-input class="verdeesc" type="text" [(ngModel)]="filtro.data"></ion-input>
+            </ion-item>
+
+            <ion-grid>
+                <ion-col col-10 offset-1>
+                    <button ion-button class="cwhite" color="rosa" block round (click)="buscar()">Buscar</button>
+                </ion-col>
+            </ion-grid>
+        </ion-list>
+    </ion-content>
+</ion-menu-->
+
+<ion-header class="bgapp bar-header">
+    <ion-row>
+        <ion-col col-1>
+            <button ion-button icon-only class="transp" (click)="openLeftMenu()">
+                <ion-icon name="menu"></ion-icon>
+            </button>
+        </ion-col>
+        <ion-col col-9>
+            <ion-searchbar [(ngModel)]="search" (ionInput)="find($event)" class="searchTransp"></ion-searchbar>
+        </ion-col>
+        <ion-col col-2>
+            <button ion-button icon-only class="transp" (click)="openRightMenu()">
+                <ion-icon name="funnel" md="ios-funnel"></ion-icon>
+            </button>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+            <div class="pdtop text-center">
+                <span class="cwhite">#</span><span class="verde">Eu</span><span class="rosa">Na</span><span
+                        class="verde">Balada</span>
+            </div>
+        </ion-col>
+    </ion-row>
+</ion-header>
+
+
+<ion-content #content>
+    <ion-list *ngFor="let f of festa" >
+        <ion-card (click)="detalhaFesta(f.id, f.nome, f.img_principal)">
+            <img [src]="f.img_principal"/>
+            <ion-card-content>
+                <ion-card-title class="rosaesc">
+                    {{f.nome}}
+                </ion-card-title>
+                <ion-row>
+                    <ion-col>
+                        <span class="verdeesc"><strong>Data: </strong></span>{{f.data}}
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <span class="verdeesc"><strong>Horário de Início: </strong></span>{{f.horario_inicio}} hrs
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-10>
+                        <span class="verdeesc"><strong>Presenças confirmadas: </strong></span>
+                    </ion-col>
+                    <ion-col col-2>
+                        <ion-badge item-right color="rosa">{{f.presencas}}</ion-badge>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <div class="center"><span class="rosa">Saiba mais...</span></div>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+    </ion-list>
+</ion-content>

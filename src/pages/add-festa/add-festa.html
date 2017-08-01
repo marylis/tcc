@@ -1,0 +1,397 @@
+<ion-header class="bgapp bar-header">
+    <ion-row>
+        <ion-col col-1>
+            <button ion-button menuToggle class="transp">
+                <ion-icon name="menu"></ion-icon>
+            </button>
+        </ion-col>
+        <ion-col col-10>
+            <div class="center">
+                <span class="cwhite tam">Adicionar Festa</span>
+            </div>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+            <div class="pdtop text-center">
+                <span class="cwhite">#</span><span class="verde">Eu</span><span class="rosa">Na</span><span
+                    class="verde">Balada</span>
+            </div>
+        </ion-col>
+    </ion-row>
+</ion-header>
+
+
+<ion-content padding *ngFor="let f of festa">
+    <ion-row>
+        <ion-col class="center"><span class="rosa"><strong>Efetuar cadastro de uma nova festa</strong></span></ion-col>
+    </ion-row>
+
+
+    <!--Adicionar imagem principal -->
+    <ion-item class="paddingTopMenor" *ngIf="img_princ == ''">
+        <p item-right color="light" class="small">Adicionar Imagem de capa</p>
+        <button item-right ion-fab mini color="verde" (click)="addImgCapa()">
+            <ion-icon name="image"></ion-icon>
+        </button>
+    </ion-item>
+
+    <ion-item-group *ngIf="img_princ != ''">
+        <ion-card class="right">
+            <img src="{{img_princ}}">
+            <ion-item>
+                <button ion-button color="danger" clear item-right icon-right (click)="excluirImgCapa()">
+                    Remover Imagem
+                    <ion-icon name="trash" color="danger"></ion-icon>
+                </button>
+            </ion-item>
+        </ion-card>
+    </ion-item-group>
+
+    <ion-item>
+        <ion-label color="verde" floating>Nome da festa</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="f.nome" name="nome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label color="verde" floating>Data</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="f.data" name="data"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label color="verde" floating>Horário de início</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="festa['horario_inicio']" name="horario_inicio"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label color="verde" floating>Horário de término</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="festa['horario_termino']"
+                   name="horario_termino"></ion-input>
+    </ion-item>
+
+
+    <!--Início Local do acontecimento-->
+    <ion-item>
+        <ion-label color="verde" floating>Local de acontecimento da festa</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="festa['local_acontecimento']"
+                   name="local_acontecimento"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="verde" floating>CEP</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="festa['cep']" name="cep"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="verde" floating>Logradouro</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="festa['logradouro']" name="logradouro"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="verde" floating>Número</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="festa['numero']" name="numero"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="verde" floating>Complemento</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="festa['complemento']" name="complemento"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="verde" floating>Bairro</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="festa['bairro']" name="bairro"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="verde" floating>Cidade</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="festa['cidade']" name="cidade"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="verde" floating>Estado</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="festa['estado']" name="estado"></ion-input>
+    </ion-item>
+    <!--Fim Local do acontecimento-->
+
+    <ion-row class="pdtop">
+        <ion-col class="center"><span class="rosa"><strong>Gêneros musicais</strong></span></ion-col>
+    </ion-row>
+    <ion-item *ngFor="let g of generos_musicais">
+        <ion-label>{{g.nome}}</ion-label>
+        <ion-checkbox [(ngModel)]="g.checked" color="verde"></ion-checkbox>
+    </ion-item>
+
+    <ion-list>
+        <ion-row class="pdtop">
+            <ion-col class="center"><span class="rosa"><strong>Atrações</strong></span></ion-col>
+        </ion-row>
+
+        <ion-item-group *ngFor="let a of atracoes; let i = index">
+            <ion-item-sliding #item>
+                <ion-item>
+                    <ion-label color="verde" floating>Atração {{i+1}}</ion-label>
+                    <ion-input type="text" [(ngModel)]="a.nome" class="verdeesc"></ion-input>
+                </ion-item>
+                <ion-item-options side="right">
+                    <button color="danger" ion-button (click)="excluirAtracao(i)">
+                        <ion-icon name="trash"></ion-icon>
+                        Remover
+                    </button>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-item-group>
+
+        <ion-item class="paddingTopMenor">
+            <p item-right color="light" class="small">Adicione uma atração</p>
+            <button item-right ion-fab mini color="verde" (click)="addAtracao()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-item>
+    </ion-list>
+
+    <ion-item>
+        <ion-label color="verde" floating>Faixa etária</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="festa['faixa_etaria']"></ion-input>
+    </ion-item>
+
+    <!--Início tipos ingressos-->
+    <ion-grid>
+        <ion-row class="pdtop">
+            <ion-col class="center"><span class="rosa"><strong>Tipos de Ingressos</strong></span></ion-col>
+        </ion-row>
+
+        <ion-list *ngFor="let t of tp_ingressos">
+            <ion-item>
+                <ion-label color="verde" floating>Nome do ingresso</ion-label>
+                <ion-input class="verdeesc" type="text" [(ngModel)]="t.nome"></ion-input>
+            </ion-item>
+
+            <ion-row class="pdtop">
+                <ion-col>
+                    <span class="verdeesc">Open Bar?</span>
+                </ion-col>
+            </ion-row>
+            <ion-item-group *ngFor="let b of t.tipo_ingresso_bebida; let i = index">
+                <ion-item-sliding #item>
+                    <ion-item>
+                        <ion-label color="verde" floating>Bebida {{i+1}}</ion-label>
+                        <ion-input class="verdeesc" type="text" [(ngModel)]="b.nome"></ion-input>
+                    </ion-item>
+                    <ion-item-options side="right">
+                        <button color="danger" ion-button (click)="excluirBebida(i, t)">
+                            <ion-icon name="trash"></ion-icon>
+                            Remover
+                        </button>
+                    </ion-item-options>
+                </ion-item-sliding>
+            </ion-item-group>
+            <ion-item class="paddingTopMenor">
+                <p item-right color="light" class="small">Adicionar bebida</p>
+                <button item-right ion-fab mini color="verde" (click)="addBebida(t)">
+                    <ion-icon name="add"></ion-icon>
+                </button>
+            </ion-item>
+
+            <ion-row class="pdtop">
+                <ion-col>
+                    <span class="verdeesc">Open Food?</span>
+                </ion-col>
+            </ion-row>
+            <ion-item-group *ngFor="let c of t.tipo_ingresso_comida; let i = index">
+                <ion-item-sliding #item>
+                    <ion-item>
+                        <ion-label color="verde" floating>Comida {{i+1}}</ion-label>
+                        <ion-input class="verdeesc" type="text" [(ngModel)]="c.nome"></ion-input>
+                    </ion-item>
+                    <ion-item-options side="right">
+                        <button color="danger" ion-button (click)="excluirComida(i, t)">
+                            <ion-icon name="trash"></ion-icon>
+                            Remover
+                        </button>
+                    </ion-item-options>
+                </ion-item-sliding>
+            </ion-item-group>
+            <ion-item class="paddingTopMenor">
+                <p item-right color="light" class="small">Adicionar comida</p>
+                <button item-right ion-fab mini color="verde" (click)="addComida(t)">
+                    <ion-icon name="add"></ion-icon>
+                </button>
+            </ion-item>
+
+            <ion-item-group *ngFor="let g of t.tipo_ingresso_gen_sexual">
+                <ion-item *ngIf="g.id_genero_sexual == 1">
+                    <ion-label color="verde" floating>Masculino</ion-label>
+                    <ion-input class="verdeesc" type="text" [(ngModel)]="g.valor_ingresso"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="g.id_genero_sexual == 2">
+                    <ion-label color="verde" floating>Feminino</ion-label>
+                    <ion-input class="verdeesc" type="text" [(ngModel)]="g.valor_ingresso"></ion-input>
+                </ion-item>
+                <ion-item *ngIf="g.id_genero_sexual == 3">
+                    <ion-label color="verde" floating>Geral</ion-label>
+                    <ion-input class="verdeesc" type="text" [(ngModel)]="g.valor_ingresso"></ion-input>
+                </ion-item>
+            </ion-item-group>
+        </ion-list>
+        <ion-item class="paddingTopMenor">
+            <p item-right color="light" class="small">Adicione um tipo de ingresso</p>
+            <button item-right ion-fab mini color="verde" (click)="addTpIngresso()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-item>
+    </ion-grid>
+    <!--Fim tipos ingressos-->
+
+    <!-- Início pontos de venda -->
+    <ion-grid>
+        <ion-row class="pdtop">
+            <ion-col class="center"><span class="rosa"><strong>Pontos de venda de ingressos</strong></span></ion-col>
+        </ion-row>
+        <ion-list>
+            <ion-item-group *ngFor="let p of pontos_venda; let i = index">
+                <ion-item-sliding #item>
+                    <ion-item>
+                        <ion-label color="verde" floating>Nome do local</ion-label>
+                        <ion-input class="verdeesc" type="text" [(ngModel)]="p.nome"></ion-input>
+                    </ion-item>
+                    <ion-item-options side="right">
+                        <button color="danger" ion-button (click)="excluirPontoVenda(i)">
+                            <ion-icon name="trash"></ion-icon>
+                            Remover
+                        </button>
+                    </ion-item-options>
+                </ion-item-sliding>
+                <ion-item>
+                    <ion-label color="verde" floating>CEP</ion-label>
+                    <ion-input class="verdeesc" type="text" [(ngModel)]="p.cep"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="verde" floating>Logradouro</ion-label>
+                    <ion-input class="verdeesc" type="text" [(ngModel)]="p.logradouro"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="verde" floating>Número</ion-label>
+                    <ion-input class="verdeesc" type="text" [(ngModel)]="p.numero"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="verde" floating>Complemento</ion-label>
+                    <ion-input class="verdeesc" type="text" [(ngModel)]="p.complemento"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="verde" floating>Bairro</ion-label>
+                    <ion-input class="verdeesc" type="text" [(ngModel)]="p.bairro"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="verde" floating>Cidade</ion-label>
+                    <ion-input class="verdeesc" type="text" [(ngModel)]="p.cidade"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="verde" floating>Estado</ion-label>
+                    <ion-input class="verdeesc" type="text" [(ngModel)]="p.estado"></ion-input>
+                </ion-item>
+            </ion-item-group>
+            <ion-item class="paddingTopMenor">
+                <p item-right color="light" class="small">Adicionar ponto de venda</p>
+                <button item-right ion-fab mini color="verde" (click)="addPontoVenda()">
+                    <ion-icon name="add"></ion-icon>
+                </button>
+            </ion-item>
+        </ion-list>
+    </ion-grid>
+    <!--Fim pontos de venda -->
+
+
+    <!--Inicio entrega abadás -->
+    <!-- Início pontos de entrega de abadá -->
+    <ion-grid *ngIf="pontos_entrega_abada != ''">
+        <ion-row class="pdtop">
+            <ion-col class="center"><span class="rosa"><strong>Pontos de entregas dos abadás</strong></span></ion-col>
+        </ion-row>
+        <ion-list>
+            <ion-item-group *ngFor="let p of pontos_entrega_abada; let i = index">
+                <ion-item-sliding #item>
+                    <ion-item>
+                        <ion-label color="verde" floating>Nome do local</ion-label>
+                        <ion-input class="verdeesc" type="text" [(ngModel)]="p.nome"></ion-input>
+                    </ion-item>
+                    <ion-item-options side="right">
+                        <button color="danger" ion-button (click)="excluirPontoEntregaAbada(i)">
+                            <ion-icon name="trash"></ion-icon>
+                            Remover
+                        </button>
+                    </ion-item-options>
+                </ion-item-sliding>
+                <ion-item>
+                    <ion-label color="verde" floating>CEP</ion-label>
+                    <ion-input class="verdeesc" type="text" [(ngModel)]="p.cep"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="verde" floating>Logradouro</ion-label>
+                    <ion-input class="verdeesc" type="text" [(ngModel)]="p.logradouro"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="verde" floating>Número</ion-label>
+                    <ion-input class="verdeesc" type="text" [(ngModel)]="p.numero"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="verde" floating>Complemento</ion-label>
+                    <ion-input class="verdeesc" type="text" [(ngModel)]="p.complemento"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="verde" floating>Bairro</ion-label>
+                    <ion-input class="verdeesc" type="text" [(ngModel)]="p.bairro"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="verde" floating>Cidade</ion-label>
+                    <ion-input class="verdeesc" type="text" [(ngModel)]="p.cidade"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label color="verde" floating>Estado</ion-label>
+                    <ion-input class="verdeesc" type="text" [(ngModel)]="p.estado"></ion-input>
+                </ion-item>
+            </ion-item-group>
+            <ion-item class="paddingTopMenor">
+                <p item-right color="light" class="small">Adicionar ponto de entrega</p>
+                <button item-right ion-fab mini color="verde" (click)="addPontoEntregaAbada()">
+                    <ion-icon name="add"></ion-icon>
+                </button>
+            </ion-item>
+        </ion-list>
+    </ion-grid>
+    <!--Fim pontos de entrega de abadá -->
+
+    <ion-row class="pdtop">
+        <ion-col class="center"><span class="rosa"><strong>Sobre a retirada dos abadás</strong></span></ion-col>
+    </ion-row>
+    <ion-item>
+        <ion-label color="verde" floating>Requisitos para a retirada</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="festa['requisitos_retirada']"
+                   name="requisitos_retirada"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="verde" floating>Observações</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="festa['obs_abada']" name="obs_abada"></ion-input>
+    </ion-item>
+    <!--Fim entrega abadás -->
+
+    <!-- ADICIONAR IMAGENS SOBRE O EVENTO -->
+    <ion-item-group *ngFor="let img of imgs; let i = index">
+        <ion-card class="right">
+            <img src="{{img.image}}" [hidden]="!img.image">
+            <ion-item>
+                <button ion-button color="danger" clear item-right icon-right (click)="excluirImg(i)">
+                    Remover Imagem
+                    <ion-icon name="trash" color="danger"></ion-icon>
+                </button>
+            </ion-item>
+        </ion-card>
+    </ion-item-group>
+
+    <ion-item class="paddingTopMenor">
+        <p item-right color="light" class="small">Adicionar imagens</p>
+        <button item-right ion-fab mini color="verde" (click)="addImg()">
+            <ion-icon name="images"></ion-icon>
+        </button>
+    </ion-item>
+
+    <ion-grid>
+        <ion-col col-10 offset-1>
+            <button ion-button class="cwhite" color="rosa" block round (click)="addFesta()">Salvar</button>
+        </ion-col>
+    </ion-grid>
+
+</ion-content>

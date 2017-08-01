@@ -1,0 +1,122 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+.background{
+  background-image: url("../assets/img/pgIni.jpg");
+}
+
+.center {
+  text-align: center !important;
+  margin-left: auto;
+}
+.title {
+  font-family: "Montserrat";
+  position: absolute;
+  top: 0;
+  font-size: 2.5em;
+  width: 100%;
+}
+
+.subtitle{
+  font-family: "Montserrat";
+  position: absolute;
+  top: 7%;
+  font-size: 1.0em;
+  width: 100%;
+}
+
+.top{
+  top: 30%;
+  position: absolute;
+  text-align: center !important;
+  margin-left: auto;
+}
+
+.bottoml{
+  bottom: 20%;
+  position: absolute;
+}
+
+.bottomc{
+  bottom: 10%;
+  position: absolute;
+}
+
+ion-item.bg-hidden {
+  background-color: transparent;
+}
+
+.rosa{
+  color: #F50F82;
+}
+
+.verdeesc{
+  color: #00b18b;
+}
+
+.rosaesc{
+  color: #be0e68;
+}
+
+.verde{
+  color: #00F2C5;
+}
+
+.cinza{
+  color: #818181;
+}
+
+.cwhite{
+  color: white;
+}
+
+/* Workaround to hide android default validation colors */
+ion-item.item-md.item-input.input-has-focus .item-inner,
+ion-item.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner,
+ion-item.item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner {
+  border-bottom-color: #00F2C5 !important;
+  box-shadow: none;
+}
+
+/* Workaround to hide window phone default validation colors */
+ion-item.item-wp.item-input.input-has-focus .text-input,
+ion-item.item-wp.item-input.ng-valid.input-has-value:not(.input-has-focus) .text-input,
+ion-item.item-wp.item-input.ng-invalid.ng-touched:not(.input-has-focus) .text-input {
+  border: 2px solid #00F2C5 !important;
+}
+
+
+ion-label.label.label-md.label-md-verde{
+  color:  #00F2C5 !important;
+}
+
+.input-has-focus .label-md[stacked], .input-has-focus .label-md[floating] {
+  color: #F50F82 !important;
+}
+
+.bgapp{
+  background-image: url("../assets/img/fundoApp.png");
+}
+
+.right{
+  text-align: right!important;
+}
+
+.small {
+  font-size: small !important;
+}
+

@@ -1,0 +1,128 @@
+<ion-header class="bgapp bar-header">
+    <ion-row>
+        <ion-col col-1>
+            <button ion-button menuToggle class="transp">
+                <ion-icon name="menu"></ion-icon>
+            </button>
+        </ion-col>
+        <ion-col col-10>
+            <div class="center">
+                <span class="cwhite tam">Cadastrar Empresa</span>
+            </div>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+            <div class="pdtop text-center">
+                <span class="cwhite">#</span><span class="verde">Eu</span><span class="rosa">Na</span><span
+                    class="verde">Balada</span>
+            </div>
+        </ion-col>
+    </ion-row>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-row>
+        <ion-col class="center"><span class="rosa"><strong>Efetuar cadastro de Empresa</strong></span></ion-col>
+    </ion-row>
+
+    <ion-item class="bg-hidden">
+        <ion-label color="verde" floating>Nome da Empresa</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="empresa.nome"></ion-input>
+    </ion-item>
+
+    <ion-item class="bg-hidden">
+        <ion-label color="verde" floating>CNPJ</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="empresa.cnpj"></ion-input>
+    </ion-item>
+
+    <ion-item class="bg-hidden">
+        <ion-label color="verde" floating>Razão Social</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="empresa.razao_social"></ion-input>
+    </ion-item>
+
+    <ion-item class="bg-hidden">
+        <ion-label color="verde" floating>Responsável</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="empresa.responsavel"></ion-input>
+    </ion-item>
+
+
+    <ion-item class="bg-hidden">
+        <ion-label color="verde" floating>CEP</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="empresa.cep"></ion-input>
+    </ion-item>
+    <ion-item class="bg-hidden">
+        <ion-label color="verde" floating>Logradouro</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="empresa.logradouro"></ion-input>
+    </ion-item>
+    <ion-item class="bg-hidden">
+        <ion-label color="verde" floating>Número</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="empresa.numero"></ion-input>
+    </ion-item>
+    <ion-item class="bg-hidden">
+        <ion-label color="verde" floating>Complemento</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="empresa.complemento"></ion-input>
+    </ion-item>
+    <ion-item class="bg-hidden">
+        <ion-label color="verde" floating>Bairro</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="empresa.bairro"></ion-input>
+    </ion-item>
+    <ion-item class="bg-hidden">
+        <ion-label color="verde" floating>Cidade</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="empresa.cidade"></ion-input>
+    </ion-item>
+    <ion-item class="bg-hidden">
+        <ion-label color="verde" floating>Estado</ion-label>
+        <ion-input class="verdeesc" type="text" [(ngModel)]="empresa.estado"></ion-input>
+    </ion-item>
+
+    <ion-item class="bg-hidden">
+        <ion-label color="verde" floating>Telefone</ion-label>
+        <ion-input class="verdeesc" type="tel" [(ngModel)]="empresa.telefone"></ion-input>
+    </ion-item>
+    <ion-item class="bg-hidden">
+        <ion-label color="verde" floating>Celular</ion-label>
+        <ion-input class="verdeesc" type="tel" [(ngModel)]="empresa.celular"></ion-input>
+    </ion-item>
+    <ion-item class="bg-hidden">
+        <ion-label color="verde" floating>Celular Secundário</ion-label>
+        <ion-input class="verdeesc" type="tel" [(ngModel)]="empresa.celular_2"></ion-input>
+    </ion-item>
+
+    <ion-item class="bg-hidden">
+        <ion-label color="verde" floating>E-mail</ion-label>
+        <ion-input class="verdeesc" type="email" [(ngModel)]="empresa.email"></ion-input>
+    </ion-item>
+    <ion-item class="bg-hidden">
+        <ion-label color="verde" floating>Senha</ion-label>
+        <ion-input class="verdeesc" type="password" [(ngModel)]="empresa.senha"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label color="verde" floating>Confirme sua senha</ion-label>
+        <ion-input class="verdeesc" type="password" [(ngModel)]="empresa.senha_conf"></ion-input>
+    </ion-item>
+
+    <ion-list radio-group [(ngModel)]="empresa.mostrar">
+        <ion-list-header>
+            Mostrar dados de endereço e telefone aos usuários?
+        </ion-list-header>
+
+        <ion-item>
+            <ion-label>Sim</ion-label>
+            <ion-radio value="true"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Não</ion-label>
+            <ion-radio value="false"></ion-radio>
+        </ion-item>
+    </ion-list>
+
+    <ion-grid>
+        <ion-col col-10 offset-1>
+            <button ion-button class="cwhite" color="rosa" block round (click)="addEmp()">Salvar</button>
+        </ion-col>
+    </ion-grid>
+</ion-content>
